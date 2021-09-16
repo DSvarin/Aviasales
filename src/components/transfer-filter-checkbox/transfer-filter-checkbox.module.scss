@@ -1,0 +1,39 @@
+.item {
+    padding: 10px 0;
+    display: block;
+    padding-left: 50px;
+    font-size: 13px;
+    line-height: 20px;
+
+    &:hover {
+        background-color: #F1FCFF;
+        cursor: pointer;
+    }
+
+}
+
+.checkinput {
+    position: absolute;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.checkbox {
+    position: absolute;
+    margin-left: -30px;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid #9ABBCE
+}
+
+.checkinput:checked + .checkbox {
+border: 1px solid #2196F3;
+background:no-repeat center url(./Shape.svg);
+
+}
+
+.checkinput:focus + .checkbox {
+    box-shadow: 0 0 5px #2196F3;
+}
