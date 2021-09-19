@@ -5,7 +5,7 @@ import reduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import './style.css';
 
-import rootReducer from './components/reducers';
+import rootReducer from './reducers';
 import App from './components/App';
 
 const composeEnhancers =
@@ -15,13 +15,7 @@ const composeEnhancers =
       })
     : compose;
 
-const loggerMiddleware = (store) => (next) => (action) => {
-  const result = next(action);
-  console.log('Middleware', store.getState());
-  return result;
-};
-
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(loggerMiddleware, reduxThunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(reduxThunk)));
 
 render(
   <Provider store={store}>

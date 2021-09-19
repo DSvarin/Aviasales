@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setTransferFilters } from '../actions';
+import { setTransferFilters } from '../../actions';
 import classes from './trnasfer-filter.module.scss';
 import InputCheckbox from '../transfer-filter-checkbox';
 

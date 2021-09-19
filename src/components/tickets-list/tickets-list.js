@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { Alert, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import classes from './tickets-list.module.scss';
+
+import { getVisibleTicketsCostFilter, getVisibleTicketsTransferFilter } from '../../scripts/get-visible-ticket-list';
 
 import CostFilter from '../cost-filter';
 import Ticket from '../ticket';
@@ -20,7 +23,7 @@ const TicketsList = ({ tickets, loading }) => {
       <CostFilter />
       {loading ? <Spin size="large" /> : null}
       {tickets.length === 0 && !loading ? (
-        <Alert message="Нет подходящих рейсов. Необходимо выбрать количество пересадок" type="info" showIcon />
+        <Alert message="Нет подходящих рейсов. Необходимо выбрать количество пересадок." type="info" showIcon />
       ) : null}
       <ul className={classes.list}>
         {tickets.slice(0, visibleTicketsNumber).map((ticket) => (
@@ -46,4 +49,11 @@ TicketsList.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default TicketsList;
+const mapStateToProps = (state) => ({
+  tickets: getVisibleTicketsCostFilter(
+    getVisibleTicketsTransferFilter(state.tickets, state.transferFilters),
+    state.costFilter
+  ),
+});
+
+export default connect(mapStateToProps, null)(TicketsList);

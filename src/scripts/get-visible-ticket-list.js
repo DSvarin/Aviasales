@@ -1,14 +1,12 @@
-import { connect } from 'react-redux';
 import { CostFilters } from '../actions';
-import TicketsList from '../tickets-list';
 
-const getVisibleTicketsTransferFilter = (tickets, filters) =>
+export const getVisibleTicketsTransferFilter = (tickets, filters) =>
   tickets.filter(
     (ticket) =>
       filters.indexOf(ticket.segments[0].stops.length) >= 0 && filters.indexOf(ticket.segments[1].stops.length) >= 0
   );
 
-const getVisibleTicketsCostFilter = (ticketsAfterFilter, filter) => {
+export const getVisibleTicketsCostFilter = (ticketsAfterFilter, filter) => {
   switch (filter) {
     case CostFilters.SHOW_THE_CHEAPEST:
       return ticketsAfterFilter.sort((prev, next) => prev.price - next.price);
@@ -22,12 +20,3 @@ const getVisibleTicketsCostFilter = (ticketsAfterFilter, filter) => {
       return ticketsAfterFilter;
   }
 };
-
-const mapStateToProps = (state) => ({
-  tickets: getVisibleTicketsCostFilter(
-    getVisibleTicketsTransferFilter(state.tickets, state.transferFilters),
-    state.costFilter
-  ),
-});
-
-export default connect(mapStateToProps, null)(TicketsList);
