@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setCostFilter, CostFilters } from '../../actions';
+import { setCostFilter, CostFilters } from '../../store/actions';
 import classes from './cost-filter.module.scss';
 
 const CostFilter = ({ setCheapest, setFastest }) => {

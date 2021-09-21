@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classes from './App.module.scss';
 import logo from './Logo.svg';
 
-import { setData } from '../../actions';
+import { setData } from '../../store/actions';
 
 import AviasalesService from '../../services/aviasalesapi-service';
 import TrnasferFilter from '../transfer-filter';

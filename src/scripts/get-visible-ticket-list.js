@@ -1,4 +1,4 @@
-import { CostFilters } from '../actions';
+import { CostFilters } from '../store/actions';
 
 export const getVisibleTicketsTransferFilter = (tickets, filters) =>
   tickets.filter(
