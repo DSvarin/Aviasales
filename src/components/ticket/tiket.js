@@ -7,24 +7,24 @@ const Ticket = ({ carrier, price, segments }) => {
   const imgUrl = `//pics.avs.io/99/36/${carrier}.png`;
 
   const getDepartArrivalTime = (departureTime, timeDistance) => {
-    const hoursD = new Date(departureTime).getHours();
-    const minutesD = new Date(departureTime).getMinutes();
+    let hoursD = new Date(departureTime).getHours();
+    let minutesD = new Date(departureTime).getMinutes();
     let hoursA = hoursD + Math.trunc(timeDistance / 60);
     let minutesA = minutesD + (timeDistance % 60);
 
-    if (minutesA >= 60) {
+    while (minutesA > 60) {
       minutesA -= 60;
       hoursA += 1;
     }
 
-    if (hoursA > 24) {
+    while (hoursA > 24) {
       hoursA -= 24;
     }
 
-    [hoursD, minutesD, hoursA, minutesA].forEach((item) => {
-      if (item < 10) return `0${item}`;
-      return item;
-    });
+    hoursD = hoursD >= 10 ? hoursD : `0${hoursD}`;
+    minutesD = minutesD >= 10 ? minutesD : `0${minutesD}`;
+    hoursA = hoursA >= 10 ? hoursA : `0${hoursA}`;
+    minutesA = minutesA >= 10 ? minutesA : `0${minutesA}`;
 
     return `${hoursD}:${minutesD} - ${hoursA}:${minutesA}`;
   };
